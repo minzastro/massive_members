@@ -1,0 +1,7 @@
+set contour base
+unset sur
+set cntrparam bspline
+set cntrparam levels auto 5
+set dgrid3d 50,30
+set view 0,0
+set view map

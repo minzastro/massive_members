@@ -1,0 +1,23 @@
+set term postscript color enhanced solid 24
+set output "medians1.eps"
+#set title "Maximum of m_1 distribution (M_{max} = 150)"
+set xlabel "m_1" 0,0
+set log xy
+set xrange [10:150]
+unset key
+plot "medians1.1" u 1:2 w l title "Random", \
+     "medians1.2" u 1:2 w l title "Constrained", \
+     "medians1.3" u 1:2 w l title "Sorted"
+set output "medians2.eps"
+#set title "medians of m_2 distribution (M_{max} = 150)"
+set xlabel "m_2" 0,0
+plot "medians2.1" u 1:2 w l title "Random", \
+     "medians2.2" u 1:2 w l title "Constrained", \
+     "medians2.3" u 1:2 w l title "Sorted"
+set output "medians3.eps"
+#set title "medians of m_3 distribution (M_{max} = 150)"
+set xlabel "m_3" 0,0
+plot "medians3.1" u 1:2 w l title "Random", \
+     "medians3.2" u 1:2 w l title "Constrained", \
+     "medians3.3" u 1:2 w l title "Sorted"
+

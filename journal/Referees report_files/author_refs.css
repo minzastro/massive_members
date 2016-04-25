@@ -1,0 +1,562 @@
+/* CSS Document */
+
+/* general styles */
+
+body {
+	padding:0;
+	margin:10px 0 10px 0;
+	background:#ebebeb url(authorsBg.jpg) 0 0 repeat-x;
+	color:#000;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:75%;
+	text-align: center;
+}
+
+
+tt, code {
+	font-size: 9pt;
+}
+
+form {
+	width: 987px;
+	margin:0 auto;
+}
+
+body table {
+	margin:0 auto;
+
+}
+
+table.content {
+	width: 987px;
+}
+
+ul, ul li {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+noprint, .helpdoc p, .helpdoc h2{
+	text-align: left;
+	margin:10px;
+}
+
+.helpdoc{
+	background: #ffffff;
+	text-align: left;
+}
+
+/*
+.helpdoc table{
+	height: 29px;
+	background:url(iophelpBg_small.gif) 0 0 repeat-x;
+}
+*/
+
+table.slimheader {
+	width: 100%;
+	height: 29px;
+	background:url(iophelpBg_small.gif) 100% 0 repeat-x;
+}
+
+td.WebHeaderSlim{
+	height: 29px;
+	background:url(iopjournals_small.gif) 0 0 no-repeat;
+}
+
+.helpdoc ul, .helpdoc ul li, .helpdoc ol, .helpdoc ol li {
+	text-align: left;
+	margin:0 20px;
+	padding:0;
+}
+.helpdoc ul, .helpdoc ul li {
+	list-style-type:disc;
+}
+.helpdoc ol, .helpdoc ol li {
+	list-style-type:decimal;
+}
+.helpdoc ol li ul, .helpdoc ol li ul li {list-style-type: disc}
+
+p {
+	line-height:150%;
+}
+
+.right { float:right; }
+
+/* table styles */
+/* I've split the Header1 and Header2 into Author and Referee styles so that we can work with one stylesheet. SAH */
+td.AuthorHeader1 {
+	width:374px;
+	height:120px;
+	background:url(IOP_for_Authors.gif) 0 0 no-repeat;
+	color:#fff;
+	font-weight:bold;
+	padding:50px 0 0 30px;
+	line-height:normal;
+}
+
+td.AuthorHeader2 {
+	width:613px;
+	height:120px;
+	background:url(IOP_for_Authors.gif) 100% 0 no-repeat;
+}
+
+td.RefereeHeader1 {
+	width:374px;
+	height:120px;
+	background:url(IOP_for_Referees.gif) 0 0 no-repeat;
+	color:#fff;
+	font-weight:bold;
+	padding:50px 0 0 30px;
+	line-height:normal;
+}
+
+td.RefereeHeader2 {
+	width:613px;
+	height:120px;
+	background:url(IOP_for_Referees.gif) 100% 0 no-repeat;
+}
+
+table#loginTable {
+	color:#000;
+	font-weight:bold;
+	margin:20px 20px 0 180px;
+	text-align:right;
+}
+
+table#loginTable ul {
+	padding:10px 0 0 85px;
+}
+
+td#topNav{
+	height:30px;
+	background-color:#a50202;
+	padding-left:260px;
+	color:#fff;
+	font-weight:bold;
+	font-size:9pt;
+}
+
+td#topNav a {
+	color:#fff;
+	font-weight:bold;
+	font-size:9pt;
+}
+
+td#leftNav {
+	width:220px;
+	padding:20px 15px;
+	background:#acacac url(leftBg.jpg) 0 0 repeat-x;
+	font-family:Arial, Helvetica, sans-serif; /* I added these two font lines SAH */
+	font-size:75%;
+}
+
+td.mainAreaBg {
+	padding:20px;
+	background-color:#fff;
+	font-family:Arial, Helvetica, sans-serif; /* I added these two font lines SAH */
+	font-size:75%;
+}
+
+td.mainAreaBg table table td, td.mainAreaBg table td { /* I added td.mainAreaBg table td */
+	font-family:Arial, Helvetica, sans-serif; /* I added these two font lines SAH */
+	font-size:75%;
+}
+
+td.mainAreaBg a {
+	font-weight:normal;
+	text-decoration:underline;
+}
+
+td.inProgress a {
+	font-weight:bold;
+}
+
+td.smallform {
+	padding-left:20px;
+	font-family:Arial, Helvetica, sans-serif; /* I added these two font lines SAH */
+	font-size:75%;
+}
+
+td.copyright {
+	padding-left:20px;
+	color:#a50202;
+}
+
+.grow {
+	background-color:#E6E6F0;
+}
+
+.yrow {
+	background-color:#ffffcc;
+}
+
+/* links and navigation */
+
+a {
+	font-weight:bold;
+	text-decoration:none;
+	color:#a50202;
+}
+
+a:hover {
+	text-decoration:underline;
+}
+
+#leftNav a {
+	color:#a50202;
+	font-size:9pt; /* SAH */
+}
+
+ul.topNav{
+
+}
+
+ul.topNav, ul.topNav li a {
+	color:#fff;
+	font-weight:bold;
+}
+
+ul.topNav li {
+	display:block;
+	float:left;
+}
+
+ul.topNav li a {
+	text-decoration:none;
+	display:block;
+	float:left;
+	padding:0 10px;
+}
+
+td.smallform a, ul.topNav li a:hover {
+	text-decoration:underline;
+}
+
+
+/* headings, title and font-styles */
+h1, h2, .h1, .h2{ /* I've added h2 to this SAH */
+	font-size:1.5em;
+	color:#a50202;
+	padding:0;
+	margin:0 0 20px 0;
+}
+
+.h4, .h3, h3, h4 {
+	font-size:1.1666em;
+	color:#a50202;
+	font-weight:bold;
+}
+
+.h3, h3 {
+	font-size:1.5em;
+	color:#a50202;
+
+}
+
+/* form elements */
+
+#loginTable input.fields {
+	border:1px solid #d7d7d7;
+	width:100px;
+	margin-right:15px;
+}
+
+/* My add-ins */
+.fields, .topnav, .copyright{
+	font-size:75%;
+}
+
+#leftNav .smlblk{
+	font-size:9pt;
+	font-weight:bold;
+	color:#CCB43D;
+}
+
+.smlw {
+	font-size:9pt;
+	font-weight:bold;
+}
+
+#leftNav li{
+	padding-bottom: 5px;
+	margin-left: 20px;
+	color:#bf0000;
+	list-style-image:url(n2_next.gif);
+}
+
+#leftNav li.std{
+	margin-left: 20px;
+	list-style-image:none;
+	color:#000000
+}
+
+#leftNav li.smlw{
+	margin-left: 20px;
+	list-style-image:none;
+	color:#bf0000;
+}
+
+.stdred {
+	color:#ff0000;
+}
+.inProgress, td.inProgress{
+	background-color:#FFFFCC
+}
+.complete, td.complete{
+	background-color:#E6E6F0
+}
+.articleSearch, td.articleSearch{
+	background-color:#E6E6F0
+}
+
+
+/* ******************************************************* */
+/*              NJP special case livery                    */
+/* ******************************************************* */
+
+body#njp td.AuthorHeader1{
+	background:url(njp_for_authors.gif) 0 0 no-repeat;
+}
+
+body#njp td.AuthorHeader2{
+	background:url(njp_for_authors.gif) 100% 0 no-repeat;
+}
+
+body#njp td.RefereeHeader1 {
+	background:url(njp_for_Referees.gif) 0 0 no-repeat;
+}
+
+body#njp td.RefereeHeader2 {
+	background:url(njp_for_Referees.gif) 100% 0 no-repeat;
+}
+
+body#njp td#topNav{
+	background-color:#fc0;
+}
+
+body#njp td#topNav, body#njp td#topNav a {
+	color:#000;
+}
+
+body#njp td#leftNav{
+	background:#292929 url(njp_leftBg.jpg) 0 0 repeat-x;
+}
+
+body#njp #leftNav a {
+	color:#fff;
+}
+
+body#njp a, body#njp td.copyright, body#njp h1, body#njp .h1, body#njp h2, body#njp .h2, body#njp .h4, body#njp .h3, body#njp h3, body#njp h4 {
+	color:#323284;
+}
+
+body#njp #leftNav li{
+	list-style-image:url(njp_n2_next.gif);
+}
+
+body#njp #leftNav li.std, body#njp #leftNav li.smlw{
+	list-style-image:none;
+}
+
+/* ******************************************************* */
+/*              AAS - AJ special case livery               */
+/* ******************************************************* */
+
+body#aj table.slimheader {
+	width: 100%;
+	height: 29px;
+	background:url(AAS_small_bg.gif) 100% 0 repeat-x;
+}
+
+body#aj td.WebHeaderSlim{
+	height: 29px;
+	background:url(AAS_small.gif) 0 0 no-repeat;
+}
+
+body#aj td.AuthorHeader1{
+	background:url(AAS_for_authors.gif) 0 0 no-repeat;
+}
+
+body#aj td.AuthorHeader2{
+	background:url(AAS_for_authors.gif) 100% 0 no-repeat;
+}
+
+body#aj td.RefereeHeader1 {
+	height: 150px;
+	background:url(AAS_for_referees.gif) 0 0 no-repeat;
+}
+
+body#aj td.RefereeHeader2 {
+	height: 150px;
+	background:url(AAS_for_referees.gif) 100% 0 no-repeat;
+}
+
+body#aj td#topNav{
+	background-color:#6188B1;
+}
+
+body#aj a, body#aj td.copyright, body#aj h1, body#aj h2, body#aj .h1, body#aj .h2, body#aj .h4, body#aj .h3, body#aj h3, body#aj h4, body#aj #leftNav li{
+	color:#6188B1;
+}
+
+body#aj td#topNav, body#aj td#topNav a, body#aj ul.topNav, body#aj ul.topNav li a {
+	color:#fff;
+}
+
+body#aj #leftNav li.std, body#aj #leftNav li.smlw{
+	list-style-image:none;
+	color:#000;
+}
+
+/* ******************************************************* */
+/*              AAS - ApJ special case livery               */
+/* ******************************************************* */
+
+body#apj table.slimheader {
+	width: 100%;
+	height: 29px;
+	background:url(apj_smallBg.gif) 100% 0 repeat-x;
+}
+
+body#apj td.WebHeaderSlim{
+	height: 29px;
+	background:url(apj_journals.gif) 0 0 no-repeat;
+}
+
+body#apj td.AuthorHeader1{
+	background:url(apj_authors.gif) 0 0 no-repeat;
+}
+
+body#apj td.AuthorHeader2{
+	background:url(apj_authors.gif) 100% 0 no-repeat;
+}
+
+body#apj td.RefereeHeader1 {
+	height: 150px;
+	background:url(apj_referees.gif) 0 0 no-repeat;
+}
+
+body#apj td.RefereeHeader2 {
+	height: 150px;
+	background:url(apj_referees.gif) 100% 0 no-repeat;
+}
+
+body#apj td#topNav{
+	background-color:#003366;
+}
+
+body#apj a, body#apj td.copyright, body#apj h1, body#apj h2, body#apj .h1, body#apj .h2, body#apj .h4, body#apj .h3, body#apj h3, body#apj h4, body#apj #leftNav li{
+	color:#003366;
+}
+
+body#apj td#topNav, body#apj td#topNav a, body#apj ul.topNav, body#apj ul.topNav li a {
+	color:#fff;
+}
+
+body#apj #leftNav li.std, body#apj #leftNav li.smlw{
+	list-style-image:none;
+	color:#000;
+}
+
+/* ******************************************************* */
+/*              AAS - ApJL special case livery               */
+/* ******************************************************* */
+
+body#apjl table.slimheader {
+	width: 100%;
+	height: 29px;
+	background:url(apj_smallBg.gif) 100% 0 repeat-x;
+}
+
+body#apjl td.WebHeaderSlim{
+	height: 29px;
+	background:url(apj_journals.gif) 0 0 no-repeat;
+}
+
+body#apjl td.AuthorHeader1{
+	background:url(apj_letters_authors.gif) 0 0 no-repeat;
+}
+
+body#apjl td.AuthorHeader2{
+	background:url(apj_letters_authors.gif) 100% 0 no-repeat;
+}
+
+body#apjl td.RefereeHeader1 {
+	height: 150px;
+	background:url(apj_letters_referees.gif) 0 0 no-repeat;
+}
+
+body#apjl td.RefereeHeader2 {
+	height: 150px;
+	background:url(apj_letters_referees.gif) 100% 0 no-repeat;
+}
+
+body#apjl td#topNav{
+	background-color:#003366;
+}
+
+body#apjl a, body#apjl td.copyright, body#apjl h1, body#apjl h2, body#apjl .h1, body#apjl .h2, body#apjl .h4, body#apjl .h3, body#apjl h3, body#apjl h4, body#apjl #leftNav li{
+	color:#003366;
+}
+
+body#apjl td#topNav, body#apjl td#topNav a, body#apjl ul.topNav, body#apjl ul.topNav li a {
+	color:#fff;
+}
+
+body#apjl #leftNav li.std, body#apjl #leftNav li.smlw{
+	list-style-image:none;
+	color:#000;
+}
+
+
+/* ******************************************************* */
+/*              AAS - ApJS special case livery               */
+/* ******************************************************* */
+
+body#apjs table.slimheader {
+	width: 100%;
+	height: 29px;
+	background:url(apj_smallBg.gif) 100% 0 repeat-x;
+}
+
+body#apjs td.WebHeaderSlim{
+	height: 29px;
+	background:url(apj_journals.gif) 0 0 no-repeat;
+}
+
+body#apjs td.AuthorHeader1{
+	background:url(apj_ss_authors.gif) 0 0 no-repeat;
+}
+
+body#apjs td.AuthorHeader2{
+	background:url(apj_ss_authors.gif) 100% 0 no-repeat;
+}
+
+body#apjs td.RefereeHeader1 {
+	height: 150px;
+	background:url(apj_ss_referees.gif) 0 0 no-repeat;
+}
+
+body#apjs td.RefereeHeader2 {
+	height: 150px;
+	background:url(apj_ss_referees.gif) 100% 0 no-repeat;
+}
+
+body#apjs td#topNav{
+	background-color:#003366;
+}
+
+body#apjs a, body#apjs td.copyright, body#apjs h1, body#apjs h2, body#apjs .h1, body#apjs .h2, body#apjs .h4, body#apjs .h3, body#apjs h3, body#apjs h4, body#apjs #leftNav li{
+	color:#003366;
+}
+
+body#apjs td#topNav, body#apjs td#topNav a, body#apjs ul.topNav, body#apjs ul.topNav li a {
+	color:#fff;
+}
+
+body#apjs #leftNav li.std, body#apjs #leftNav li.smlw{
+	list-style-image:none;
+	color:#000;
+}

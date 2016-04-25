@@ -1,0 +1,8 @@
+set term postscript color enhanced 12
+set output "mmaxA1.eps"
+set title "Relative error (M_{max} = A1)"
+set xlabel "M_{tot}" 0,0
+plot "distr_B1_m1.dat" u 1:($3/$2) w lp title "1st massive", \
+     "distr_B1_m2.dat" u 1:($3/$2) w lp title "2nd massive", \
+     "distr_B1_m3.dat" u 1:($3/$2) w lp title "3rd massive", \
+     "mtotB1.dat" u 1:2 w lp title "Total cluster mass"

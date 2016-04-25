@@ -1,0 +1,21 @@
+set term postscript color enhanced solid 26 lw 2.5
+#set title "Maximum of m_1 distribution (M_{max} = 150)"
+#set xlabel "m_1" 0,0
+#set ylabel "M"
+#set log xy
+#set xrange [3:150]
+#set yrange [:10000]
+#unset key
+set output "errors_avg1.eps"
+plot "alg1/est_M_avg" u 2:(abs($3-$2)/$2) w l title "1", \
+     "alg1/est_M_avg" u 2:(abs($4-$2)/$2) w l title "2", \
+     "alg1/est_M_avg" u 2:(abs($5-$2)/$2) w l title "3"
+set output "errors_med1.eps"
+plot "alg1/est_M_med" u 2:(abs($3-$2)/$2) w l title "1", \
+     "alg1/est_M_med" u 2:(abs($4-$2)/$2) w l title "2", \
+     "alg1/est_M_med" u 2:(abs($5-$2)/$2) w l title "3"
+set output "errors_max1.eps"
+plot "alg1/est_M_max" u 2:(abs($3-$2)/$2) w l title "1", \
+     "alg1/est_M_max" u 2:(abs($4-$2)/$2) w l title "2", \
+     "alg1/est_M_max" u 2:(abs($5-$2)/$2) w l title "3"
+     

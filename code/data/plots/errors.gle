@@ -1,0 +1,10 @@
+size 20 20
+begin graph
+  data arg$(1) d1 d2 d3 d4 d5
+  let d6=(d2-d1)/d1
+  let d7=(d3-d1)/d1
+  let d8=(d4-d1)/d1
+  d6 line marker triangle color red
+  d7 line marker triangle color green
+  d8 line marker triangle color blue  
+end graph

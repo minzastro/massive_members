@@ -1,0 +1,24 @@
+set term postscript color enhanced solid 26 lw 2.5
+set output "maxima1.eps"
+set title "Maximum of m_1 distribution (M_{max} = 150)"
+set xlabel "m_1" 0,0
+set ylabel "M"
+set logscale xy
+unset key
+set xrange [3:150]
+plot "alg1/maximum1" u 2:($1*0.36) w l title "Random", \
+     "alg2/maximum1" u 2:1 w l title "Constrained", \
+     "alg3/maximum1" u 2:1 w l title "Sorted"
+set output "maxima2.eps"
+set title "Maximum of m_2 distribution (M_{max} = 150)"
+set xlabel "m_2" 0,0
+plot "alg1/maximum2" u 2:($1*0.36) w l title "Random", \
+     "alg2/maximum2" u 2:1 w l title "Constrained", \
+     "alg3/maximum2" u 2:1 w l title "Sorted"
+set output "maxima3.eps"
+set title "Maximum of m_3 distribution (M_{max} = 150)"
+set xlabel "m_3" 0,0
+plot "alg1/maximum3" u 2:($1*0.36) w l title "Random", \
+     "alg2/maximum3" u 2:1 w l title "Constrained", \
+     "alg3/maximum3" u 2:1 w l title "Sorted"
+

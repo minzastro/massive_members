@@ -1,0 +1,16 @@
+set term postscript color enhanced 24 solid lw 2
+set output "compare2a.eps"
+set xlabel "m_{1,2,3}" 0,0
+set ylabel "f"
+set log y
+set log x
+set xrange [3:200]
+set yrange [1e-4:1]
+unset key
+plot "alg1/hist_m1_4500" u 1:2:(1.0) smooth acsplines lw 0.5 lt 1, \
+     "alg2/hist_m1_1500" u 1:2:(1.0) smooth acsplines lw 3 lt 1, \
+     "alg1/hist_m2_4500" u 1:2:(1.0) smooth acsplines lw 0.5 lt 2, \
+     "alg2/hist_m2_1500" u 1:2:(1.0) smooth acsplines lw 3 lt 2, \
+     "alg1/hist_m3_4500" u 1:2:(1.0) smooth acsplines lw 0.5 lt 3, \
+     "alg2/hist_m3_1500" u 1:2:(1.0) smooth acsplines lw 3 lt 3
+     

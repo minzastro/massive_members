@@ -1,0 +1,23 @@
+set term postscript color enhanced solid 24
+set output "average1.eps"
+#set title "Maximum of m_1 distribution (M_{max} = 150)"
+set xlabel "m_1" 0,0
+set log xy
+set xrange [10:150]
+unset key
+plot "average1.1" u 1:2 w l title "Random", \
+     "average1.2" u 1:2 w l title "Constrained", \
+     "average1.3" u 1:2 w l title "Sorted"
+set output "average2.eps"
+#set title "average of m_2 distribution (M_{max} = 150)"
+set xlabel "m_2" 0,0
+plot "average2.1" u 1:2 w l title "Random", \
+     "average2.2" u 1:2 w l title "Constrained", \
+     "average2.3" u 1:2 w l title "Sorted"
+set output "average3.eps"
+#set title "average of m_3 distribution (M_{max} = 150)"
+set xlabel "m_3" 0,0
+plot "average3.1" u 1:2 w l title "Random", \
+     "average3.2" u 1:2 w l title "Constrained", \
+     "average3.3" u 1:2 w l title "Sorted"
+

@@ -1,0 +1,385 @@
+%\documentclass[a4paper,10pt,draft]{article}
+%\documentclass[a4paper,10pt]{article}
+\documentclass{aastex}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{latexsym}
+%\usepackage{hyperref}
+\usepackage{natbib}
+\newcommand{\MSun}{M_\odot}
+\newcommand{\Mmax}{m_{\mathrm{max}}}
+\newcommand{\Mcl}{M_{\mathrm{cl}}}
+
+\newcommand{\includeEPSx}[1]{\includegraphics*[scale=0.35, angle=270]{./images/bw/#1}}
+\newcommand{\includeEPS}[2]{\scalebox{#2}{\includegraphics*[angle=270]{./images/bw/#1}}}
+\newcommand{\customrule}{\cmidrule(r{.25em}){1-1}\cmidrule(lr{.25em}){2-4}\cmidrule(lr{.25em}){5-7}\cmidrule(l{.25em}){8-10}}
+
+\hoffset=-.75in
+\textwidth=6.5in
+\voffset=-.5in
+\textheight=9.0in
+
+
+%opening
+\title{First, second and third massive stars in Open Clusters}
+\author{Alexey Mints}
+\affil{University of Bielefeld, Germany}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+ Aims: The goal of this paper is to study possibilities of using first, second and third massive stars 
+ in Open Clusters to estimate total cluster mass and membership. \\
+ Methods: Estimator functions were built with the use of
+ numerical simulations and analytical approximations. \\
+ Results: Precision and error distribution of obtained estimator functions was studied.
+ The distribution of the mass of first, second and third massive stars shows strong power-law
+ tails at the high-mass end, thus it is better to use median or mode values instead of the average ones.
+ It is shown that the third massive star is a much better estimator then the first one --- it is more precise and less dependent on
+ parameters such as maximum allowed stellar mass.
+\end{abstract}
+
+\section{Introduction}
+Unfortunatelly, in most cases it is not possible to get large statistics of star cluster membership,
+so estimation of cluster mass and/or full number of members is not an easy task. Sometimes when spectoscopical data is avaliable dynamical mass estimates are applied (making use of the virial theorem). But usually only few brightest
+stars are reliably identified as members \citep{Kharchenko2003}, providing tiny amount of information about the cluster.
+
+It is natural to expect to find more massive stars in more massive clusters. Although, assuming Salpeter ???? initial mass function (hereafter IMF) one would arrive to the expectations of several stars with masses $M_{*} \sim 300 \MSun$ in the Galaxy, that are not observed. This controversy was discussed, for example, in \citet{Elmegreen}. As a by-product, he presented a relation between the
+cluster mass and the mass of it's most massive star (in the assumption of random sampling from the Salpeter IMF):
+
+\begin{equation}
+  \Mcl \sim 3 \times 10^3 \left( \frac{\Mmax}{100 \MSun} \right) ^{1.35} \MSun
+\end{equation}
+
+He tried to introduce exponential cut-off function to explain absense of heavy stars, while maintaining randomness of sampling from the IMF. But this led to a contradiction with the observed mass functions of massive clusters. He proposed several explanations to 
+this facts, including dependence of the IMF on the initial cluster mass.
+
+In the last decade IMF by Kroupa \citet{Kroupa2001} became popular.  
+It is built from several power-law parts:
+\begin{align} \label{eq:spectrum}
+ f(m)dm &= C m^{-\alpha} dm  \nonumber \\
+ F(m) &= \int_0^{m} f(m')dm'
+\end{align} 
+
+With parameters (according to \citet{Kroupa2001}):
+\begin{align} %{cc}
+  \alpha_0 = +0.30 &\hspace{0.5cm} 0.01 \leq m/\MSun < 0.08 \nonumber \\
+  \alpha_1 = +1.30 &\hspace{0.5cm}  0.08 \leq m/\MSun < 0.50 \\
+  \alpha_2 = +2.35 &\hspace{0.5cm}  0.50 \leq m/\MSun < \Mmax \nonumber 
+\end{align} 
+
+Thus a sharp cut-off at a high-mass end was introduced, although the exact value of $\Mmax$ was left as a free parameter.
+Using this IMF, Weidner and Kroupa \citet{Origin} reviewed the correlation between the mass of most massive star in the cluster and the total cluster mass. They arrived to the conclusion, that 
+Maschberger and Clarke \citet{MassFromN} discussed correlation between number of stars in the cluster and it's most massive member mass. Theese (and many more) papers were reviewed in \citet{Kroupa2010}. 
+
+Here we will try to produce cluster mass ($\Mcl$) and membership ($N$) estimators using masses of three most massive members,
+and analyse precision of these estimators. We will concentrate on two questions: 
+\begin{itemize}
+ \item what data provides the most reliable information on the cluster properties;
+ \item what is the best method to extract cluster properties from that data.
+\end{itemize}
+
+Having this two goals in mind, we will neglect at least three very important factors: stellar binarity, stellar evolution and cluster dynamics.
+Of course, we can not weight stars directly, we can only estimate their mass, mainly by their brightness, that is usually very uncertain.
+But, again, as we are interested in the statistical side of the problem, we will postpone astrophysical
+difficulties for later research. 
+Note, that here we do not have to deal with internal dynamics or spatial distribution of the cluster.
+
+If we assume all stars in the cluster to be single, then (initial) mass of each star depends only on 
+the initial mass function. Here we will consider only one IMF --- from Kroupa \citet{Kroupa2001}. 
+Thevalue of $\Mmax$ is still a matter of debates, Therefore several values will be considered in this paper ($50, 150$ and $300 \MSun$), keeping main attention on $\Mmax = 150 \MSun$.
+We will try to see, how $\Mmax$ influences the mass estimator precision.
+
+The following notation will be used througout the paper: $\bar{m}_1$ for the average value of $m_1$ and $\tilde{m}_1$ for the median value (the same for $m_2$ and $m_3$). Another useful value is  the position of the peak of $m_{1,2,3}$ distribution for a given $\Mcl$ or $N$ (mode of the distribution), we will designate them $\hat{m}_{1,2,3}$.
+
+IMF described above has an average stellar mass $\bar{m} = 0.36 \MSun$ for $\Mmax = 150 \MSun$.
+
+\section{Model}
+
+As in \citep{Origin}, three different methods for cluster members generating were used:
+\begin{description}
+ \item[Random sampling] --- $N$ stars are taken randomly from the IMF, with $N$ ranging from 300 to 10000.
+ \item[Constrained sampling] --- in this case $\Mcl$ is fixed first, then stars are taken from the IMF until their total mass surpass $\Mcl$. Thus some spread in $N$ is expected in this sample.
+ \item[Sorted sampling] --- $\Mcl$ is also fixed, then $N' = \Mcl/\bar{m}$ stars are taken from the IMF. If $M' = \sum_{N'} m_i$ smaller than $\Mcl$, then $\Delta N = (\Mcl - M')/\bar{m}$ stars are added to the cluster, repeating the procedure until cluster mass outreaches $\Mcl$. Then stellar masses are sorted. If $|M' - \Mcl|$ is larger then $\left|\Mcl - (M'-m_{1})\right|$ then the heaviest star is removed from the set. 
+\end{description}
+
+According to \citep{Origin}, random sampling is the least realistic model, but it is the easiest one to be modeled and described analytically.
+
+For each set of parameters (sampling, $\Mmax$ and $\Mcl$ or $N$), 30000 clusters were simulated, saving for each of them five values: cluster mass $\Mcl$,
+number of stars in the cluster $N$, and masses of three most massive stars of the cluster --- $m_1, m_2, m_3$.
+
+The goal is to build a method to find $\Mcl$ and/or $N$, knowing $m_1, m_2$ and $m_3$.
+It seems natural to find functions $\Mcl(\bar{m}_{1,2,3})$, $\Mcl(\tilde{m}_{1,2,3})$ and $\Mcl(\hat{m}_{1,2,3})$ (as well as $N(\bar{m}_{1,2,3})$, $N(\tilde{m}_{1,2,3})$ and $N(\hat{m}_{1,2,3})$), we will call them hereafter \textit{mass estimators (ME)}: average ME, median ME and mode ME. 
+
+
+\section{Analitycs}
+\subsection*{Random sampling}
+The probability for the most massive star to have mass $m_1 \in (m, m+dm)$ can be written (see e.g. \citep{OrderStat}) as a probability for a given star to have mass in $(m, m+dm)$ multiplied by the probability that all other stars have masses below $m$ and by number of stars $N$ (because any star can be the most massive one):
+\begin{eqnarray}
+ P(m_1 \in (m, m+dm)) &=& N f(m) \left[ F(m) \right]^{N-1} \nonumber \\ 
+    &=& N f(m) \left[ 1 - \int_m^{\Mmax} f(m')dm' \right]^{N-1} \label{eq:prob1}
+\end{eqnarray} 
+Of course, $m_1$ should be smaller then $\Mmax$.
+
+Substituting \ref{eq:spectrum} into \ref{eq:prob1} and integrating we get (for $a \neq 1$):
+\begin{equation}
+  P(m_1 \in (m, m+dm)) = N C m^{-\alpha} \left[ 1 - \frac{C}{1-\alpha} \left( \Mmax^{1-\alpha} - m^{1-\alpha} \right) \right]^{N-1} 
+\end{equation} 
+where $C$ is normalization constant. We can safely use here $m > 0.5 \MSun$ part of the Kroupa IMF, as most massive stars are usually much heavier.
+
+If $N$ is large, than we can use exponent instead of square brackets:
+\begin{equation} \label{eq:p_1st}
+ P(m_1 \in (m, m+dm)) \simeq N C m^{-\alpha} \exp \left( -\frac{N C}{1-\alpha} \left( \Mmax^{1-\alpha} - m^{1-\alpha} \right)\right)
+\end{equation} 
+Maximum of this distribution (or the mode of distribution) is located at the point
+\begin{equation}
+ \hat{m}_1 = \left(\frac{NC}{\alpha}\right)^{1/(\alpha-1)}
+\end{equation} 
+
+For $\hat{m}_1 \geq \Mmax$ obviously maximum is at the point $\hat{m}_1 = \Mmax$. 
+This puts an upper limit on the cluster mass that can be estimated with this formula.
+By inverting this equation we can get an estimate for $N$ and $\Mcl$ from $\hat{m}_1$:
+\begin{eqnarray}
+  N &=& \frac{\hat{m}_1^{\alpha-1} \alpha}{C} \nonumber \\ 
+  \Mcl &=& \frac{\bar{m} \hat{m}_1^{\alpha-1} \alpha}{C} \label{eq:mhat_est}
+\end{eqnarray} 
+
+Note that $\Mmax$ is hidden within the constant $C$ in this equations, although the dependence is weak.
+
+For $n$'th massive star, if $n \ll N$ we can use the expression:
+\begin{equation}\label{eq:p_nth}
+ P(m_n \in (m, m+dm)) \simeq \left( 1 - F(m) \right)^{n-1} P(m_1 \in (m, m+dm))
+\end{equation} 
+
+Finding average and median values for the equation \ref{eq:p_1st} is not that easy.
+
+Building analytical expressions for other sampligns is much more complicated task, so we will not focus on it here.
+% 
+% \subsection*{Other samplings}
+% 
+% Unfortunatelly the other samplings are too complex to be described analytically in a useful way.
+
+\section{Results}
+\subsection{Random sampling}\label{sec:random}
+The random sampling model has as natural parameter the number of stars in the cluster --- $N$. Here $N$ ranges from 300 to 10000, with 30000 clusters being simulated for each value of $N$.
+
+For each value of $N$ the distributions of $m_1, m_2$ and $m_3$ were obtained. An example of these distributions is shown on figure \ref{fig:random_hist}. From the figure it can be seen that the theoretical estimates given by eqn. \ref{eq:p_1st} and \ref{eq:p_nth} are matching the data well.
+Note the long power-law tails of distributions, specially for $m_1$. This tail leads to significant differences between the average and the median value, making the average much higher. Thus averages are not so well suitable for making cluster mass estimators.
+
+\begin{figure}
+  \begin{center}
+   \includeEPSx{alg1/hist_mass.eps}
+  \end{center}
+ \caption{Distribution of $m_1$ (plus signs), $m_2$ (crosses) and $m_3$ (stars) with theoretical estimates from eq. \ref{eq:p_1st} and \ref{eq:p_nth} (long-dashed, short-dashed and dot-dashed, respectively) for $N = 1000$ }  \label{fig:random_hist}
+\end{figure}
+
+Now the task is to build a method to find $\Mcl$ and/or $N$, knowing $m_1$ $m_2$ and $m_3$. We will try to find functions $\Mcl (\bar{m}_{1,2,3}), \Mcl( \tilde{m}_{1,2,3})$ and $Mcl ( \hat{m}_{1,2,3} )$. These functions for $\Mcl$ are shown in figure \ref{fig:median1}. They can be approximated with functions of the shape:
+\begin{eqnarray} \label{eq:fits}
+  \Mcl(m_{1,2,3}) &=& a m_{1,2,3}^b (\Mmax-m_{1,2,3})^c \\ \nonumber
+  N(m_{1,2,3}) &=& a m_{1,2,3}^b (\Mmax-m_{1,2,3})^c
+\end{eqnarray} 
+so function rises as power law for small $m$ and then ``saturates'' when $m$ goes to $150 \MSun$ ($\Mmax$).
+
+The parameters of the fits are shown at the table \ref{tbl:fits}. In this table first column refers to one of the functions from equation  \ref{eq:fits}, and second, third and fourth columns are for parameters of this functions --- $a$, $b$ and $c$, respectively.
+For $N(\hat{m}_{1,2,3})$ equations \ref{eq:mhat_est} can be used. Note that $b$ is always close to $\alpha_2 - 1 = 1.35$ and $c$ is close to $-1$, although $f(m) = a m^{1.35} (150-m)^{-1}$ is a bad fit. Note that the value of $c$ decreases from $f(m_1)$ to $f(m_3)$ --- this is caused by the fact, that the values of $m_3$ are much smaller than $m_1$ and are well separated from $\Mmax$, therefore ``saturation'' is not so important for them, and thus $f(m_3)$ is less sensitive to the value of $\Mmax$.
+\begin{figure}
+  \begin{center}
+    \hspace{-2.4cm}
+    \includeEPS{all_estimators.eps}{0.45}
+  \end{center}
+  \caption{Estimators data: dependencies of $\Mcl$ on $m_1$ (left), $m_2$ (middle) and $m_3$ (right) for random (solid lines), constrained (long-dashed) and sorted (short-dashed) samplings. Top row is for average values, middle is for medians and bottom for the mode.}\label{fig:median1}
+\end{figure}
+
+\begin{table} 
+\begin{center}
+\caption{Parameters of fits (see eq. \ref{eq:fits})}\label{tbl:fits}
+\begin{tabular}{cccc} \\ \toprule
+\multicolumn{4}{c}{Fits based on average values} \\ \midrule
+Function & a & b & c \\ \midrule
+$\Mcl(m_1)$ &  167.90 & 1.66 & -1.08 \\ \midrule
+$\Mcl(m_2)$ & 1279.49 & 1.40 & -1.07 \\ \midrule
+$\Mcl(m_3)$ &  563.81 & 1.39 & -0.77 \\ \midrule
+$N(m_1)$    &  915.99 & 1.59 & -1.17 \\ \midrule
+$N(m_2)$    & 8159.25 & 1.34 & -1.20 \\ \midrule
+$N(m_3)$    & 4925.55 & 1.34 & -0.97 \\ \midrule
+\multicolumn{4}{c}{Fits based on median values} \\ \midrule
+$\Mcl(m_1)$ &   211.92 & 1.37 & -0.80 \\ \midrule
+$\Mcl(m_2)$ &   228.72 & 1.37 & -0.64 \\ \midrule
+$\Mcl(m_3)$ &    55.20 & 1.40 & -0.27 \\ \midrule
+$N(m_1)$    &   913.85 & 1.32 & -0.86 \\ \midrule
+$N(m_2)$    &  1674.88 & 1.32 & -0.80 \\ \midrule
+$N(m_3)$    &   538.08 & 1.35 & -0.49 \\ \bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+Now, having this approximations in hand, we can turn back to the initially simulated data, and check, how good these approximations are. Namely, we will substitute $m_{1,2,3}$ for each cluster into mass estimators (see eq. \ref{eq:fits}) to get $\Mcl$ and $N$ which than can be compared with the real values. This will produce some distributions of estimated $\Mcl$ and $N$, together with estimates errors, as far as the ``real'' values are known from the simulations. The sample of the result for $N(m)$ is shown in the figure \ref{fig:errors} for a cluster with pre-defined number of stars ($N=1000$).
+Note, that there is a large power-law tail at the high-mass side, that is highest for $N(m_1)$ and smallest for $N(m_3)$ in all cases. Generally $N(m_3)$ shows a smaller spread than other estimators. The distribution of $N(m_3)$ also peaks closer to the real value $N=1000$. 
+
+Tables \ref{tbl:estvalues} and \ref{tbl:estdisp} summarise the relative errors of mean and relative dispersions for various estimators 
+and samplings. 
+The average estimator is the worst one, giving the highest error of the average value in almost all cases --- sometimes up to 40\%.
+The best one seems to be the median estimator, with errors of less than 3\%. As expected, the result is due to the power-law tail of distributions, to which median (and mode) values are less sensible. There is a high probability for $m_1$ to be close to $\Mmax$, where estimator functions (see eq. \ref{eq:fits}) are very sensible to $m_i$, thus producing a higher error.
+The same reason causes extremely high dispersions for the estimates based on $m_1$. Dispersions (and errors of the mean) are smaller for estimators based on $m_2$ and $m_3$, as the slope of the power-law tail is significantly higher. Relative dispersions are smallest for the mode estimator, but it has higher relative error of the mean, comparing to the median estimator.
+Note, that in most cases estimators based on $m_3$ show best results in both error of the mean and dispersions.
+
+Here we emphasize once again, that errors are distributed in a significantly non-Gaussian way in this problem. Using median values minimizes
+error for highest fraction of the data, while for the small fraction errors remain large.
+
+\begin{table} 
+\begin{center}
+\caption{Relative error (in procents) of mean value of estimated masses }\label{tbl:estvalues}
+\begin{tabular}{cccccccccc} \\ \toprule
+ & \multicolumn{3}{c}{Random sampling} &  \multicolumn{3}{c}{Constrained sampling} & \multicolumn{3}{c}{Sorted sampling} \\ \customrule
+Value      & $f(m_1)$ & $f(m_2)$ & $f(m_3)$ & $f(m_1)$ & $f(m_2)$ & $f(m_3)$& $f(m_1)$ & $f(m_2)$ & $f(m_3)$\\ \customrule
+ & \multicolumn{9}{c}{Median estimator} \\ \customrule
+ N &  0.88 &  0.28 &  0.41 &  0.48 &  0.32 &  0.27 &  1.77 &  1.89 & 1.90  \\ \customrule
+ M &  1.37 &  0.99 &  1.05 &  0.36 &  0.20 &  0.12 &  0.36 &  0.23 & 0.13  \\ \customrule
+ & \multicolumn{9}{c}{Average estimator} \\ \customrule
+ N & 23.23 & 20.13 & 15.29 & 12.44 & 13.66 & 11.43 & 18.09 & 10.41 & 6.43  \\ \customrule
+ M & 23.24 & 20.14 & 15.29 & 12.48 & 13.69 & 11.45 & 19.08 & 11.99 & 8.44  \\ \customrule
+ & \multicolumn{9}{c}{Mode estimator} \\ \customrule
+ N & 74.97 & 43.85 & 25.87 & 19.44 & 15.66 & 12.99 &  7.41 &  6.35 & 4.17  \\ \customrule
+ M & 74.82 & 43.73 & 25.76 & 21.27 &  9.29 &  7.79 &  7.92 &  7.63 & 4.67  \\ \bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table} 
+\begin{center}
+\caption{Relative dispersion (in procents) for mass estimations}\label{tbl:estdisp}
+\begin{tabular}{cccccccccc} \\ \toprule
+ & \multicolumn{3}{c}{Random sampling} & \multicolumn{3}{c}{Constrained sampling} & \multicolumn{3}{c}{Sorted sampling} \\ \customrule
+Value      & $f(m_1)$ & $f(m_2)$ & $f(m_3)$ & $f(m_1)$ & $f(m_2)$ & $f(m_3)$& $f(m_1)$ & $f(m_2)$ & $f(m_3)$\\ \customrule
+ & \multicolumn{9}{c}{Median estimator} \\ \customrule
+ N &  46.02 & 1.80 & 0.74 & 13.56 & 1.84 & 0.66 &  122.50 & 1.17 & 0.43  \\ \customrule
+ M &  39.00 & 1.62 & 0.70 & 12.97 & 1.77 & 0.65 &  111.41 & 1.13 & 0.43  \\ \customrule
+ & \multicolumn{9}{c}{Average estimator} \\ \customrule
+ N & 264.68 & 3.38 & 0.82 & 35.47 & 3.11 & 0.73 & 1296.57 & 1.99 & 0.46  \\ \customrule
+ M & 259.82 & 3.34 & 0.81 & 34.34 & 3.04 & 0.73 &  547.78 & 1.00 & 0.36  \\ \customrule
+ & \multicolumn{9}{c}{Mode estimator} \\ \customrule
+ N &   1.08 & 0.84 & 0.58 &  0.41 & 0.60 & 0.42 &    0.77 & 0.44 & 0.32  \\ \customrule
+ M &   1.08 & 0.84 & 0.58 &  0.38 & 0.56 & 0.39 &    0.79 & 0.46 & 0.33  \\ \bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\begin{figure} 
+  \begin{center}
+   \includeEPS{alg1/est_avg.eps}{0.20}
+   \includeEPS{alg1/est_med.eps}{0.20}
+   \includeEPS{alg1/est_max.eps}{0.20}
+  \end{center}
+ \caption{Distribution of estimates for a number of stars in the cluster $N(m_{1,2,3})$ (solid, long-dashed and short-dashed lines, respectively) for a cluster with pre-defined 1000 stars. Estimators are based on average (left), median (middle) and mode (right) values. }\label{fig:errors}
+\end{figure}
+
+\subsection{Constrained sampling}
+For constrained sampling almost the same algorithm of ME construction was applied as for the random sampling. The only change is that we don't have an analitical formula for $\hat{m}_{1,2,3}$, so we have to use fits to the simulated data of the shape $f(\hat{m}) = a \hat{m}^b$.
+
+From the figure \ref{fig:compare2} one can see that difference between random and constrained samplings are not very large in most cases. The distribution for constrained sampling rises and falls not slower then the one for random sampling. The faster decrease at the distribution high end for small cluster (\ref{fig:compare2}, top panel) is due to the fact, that when during the simulation the total mass comes close to the desired $\Mcl$, massive stars are preferentially rejected from the sample, as far as adding them will make the cluster too massive. Obviously, this effect vanishes for higher $\Mcl$, as one can see from the bottom panel of \ref{fig:compare2}.	
+
+\begin{figure}
+  \begin{center}
+   \includeEPSx{compare2.eps}
+   \includeEPSx{compare2a.eps}
+  \end{center}
+ \caption{Normalized distribution of $m_1$ (solid), $m_2$ (long-dashed) and $m_3$ (short-dashed) for constrained sampling (thick lines) and for random sampling (thin lines, same as at figure \ref{fig:errors}). Top panel: $N = 1000; \Mcl \approx 300$. Bottom panel:  $N = 4500; \Mcl \approx 1500$.  } \label{fig:compare2}
+\end{figure}
+
+
+\subsection{Sorted sampling}\label{sec:sorted}
+
+Sorted sampling should suppress the probability of high-mass star formation even more than the constrained one. This can be seen on figure \ref{fig:compare3}: distribution of $m_1$ for sorted sampling is almost like the one for $m_2$ for random sampling at the high-end.
+
+\begin{figure} 
+  \begin{center}
+   \includeEPSx{compare3.eps}
+   \includeEPSx{compare3a.eps}
+  \end{center}
+ \caption{Normalized distribution of $m_1$ (solid), $m_2$ (long-dashed) and $m_3$ (short-dashed) for sorted sampling (thick lines) and for random sampling (thin lines, same as at figure \ref{fig:errors}). Top panel: $N = 1000; \Mcl \approx 300$. Bottom panel:  $N = 4500; \Mcl \approx 1500$.  }\label{fig:compare3}
+\end{figure}
+
+\subsection{Estimator reliability}
+
+First let us try to compare various estimators by comparing the data, on which they are constructed. Let us turn back to the figure \ref{fig:median1}. It is obvious, that the curves are very close to each other. This can also be seen from the similiarities in parameters $a, b, c$ of fits \ref{eq:fits}. So one might expect that predictions made with different estimators for the same value of $m$ will not differ from each other significantly. This difference can be even smaller then the difference between estimated and real value, as predictions can deviate from the real value in the same direction.
+We calculate average difference as:
+\begin{equation}
+  \Delta f(m_i) = 100\%*\left< \left| \frac{f(m_i) - f_\mathrm{random}(m_i)}{f_\mathrm{random}(m_i)}\right| \right> \label{eq:difference}
+\end{equation} 
+where $i = 1,2,3$ and $m_i$ goes from $3$ to $140 \MSun$. Thus it shows how far away the estimators are from each other on average.
+
+The result is shown in table \ref{tbl:variance}. Note that in most cases $\Delta f(m_3) < \Delta f(m_1)$. Nevertheless, differences remain large, at the order of 20\%, which is much larger than the relative errors of the mean value from table \ref{tbl:estvalues}.
+
+\begin{table}
+\begin{center}
+\caption{Difference (in procents, see eq. \ref{eq:difference}) between estimators for random and other sampling} \label{tbl:variance}
+\begin{tabular}{cccc} \\ \toprule
+Sampling & $\Delta f(m_1)$ & $\Delta f(m_2)$ & $\Delta f(m_3)$ \\ \midrule
+\multicolumn{4}{c}{Average estimator} \\ \midrule
+Constrained & 24 & 17 & 18  \\ \midrule
+Ordered     & 92 & 38 & 21  \\ \midrule
+\multicolumn{4}{c}{Median estimator} \\ \midrule
+Constrained & 20 & 14 & 14  \\ \midrule
+Ordered     & 89 & 55 & 45  \\ \midrule
+\multicolumn{4}{c}{Mode estimator} \\ \midrule
+Constrained & 71 & 66 & 67  \\ \midrule
+Ordered     & 34 & 45 & 47  \\ \bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+
+Another check for the reliability of the obtained estimators is to try to apply them to the ``wrong'' dataset, for example --- using the median estimator from sorted sampling (see section \ref{sec:sorted}) to estimate masses for the random one (see section \ref{sec:random}) or use estimator from dataset with $\Mmax = 150 \MSun$ to estimate masses for $\Mmax = 300 \MSun$ dataset and so on. As far as $m_3 < m_1 < \Mmax$, one can expect, that $m_3$ will be a better source for estimates in this case as well. At least 
+it should be less dependent on $\Mmax$.
+
+In this case precision is much worse, of course. It increases to $30-100\%$ for ME based on $m_1$ and to $5-20 \%$ for ME based on $m_3$. 
+Thus the latter are, as expected, much less sensible to any $\Mmax$ uncertainty.
+
+
+\section{Conclusions}
+
+Several mass estimators for cluster mass from the first, second and third most massive stars are defined in this paper. Their precision is estimated. Estimators based on the mass of the third massive member $m_3$ 
+give the best results (approximately 3-5 times better then those based on $m_1$), and are less dependent on the maximum allowed stellar mass $\Mmax$ and assumed way of star formation (form of sampling from the IMF). 
+It is also better to build estimators on the median or mode values of $m_i$ instead of the average values. The reason the strong power-law tails in the  $m_i$ distributions, that make average value a less representative parameter.
+
+The most important parameter remaining is the assumed algorithm describing how the cluster mass is distributed among stars.
+
+As far as stellar evolution was not taken into account, this results cannont yet be applied to most of real clusters. Inclusion
+of the evolution into this model is a subject for further work, but here it was shown that $m_3$ is a good candidate for building 
+mass estimators. Error analysis was also done, showing power-law tail in error distribution, and proving that the median (or mode) values 
+are much better sources for mass estimators than the average values.
+
+%\bibliographystyle{plain}
+%\bibliographystyle{apj}
+%\bibliography{paper.bib}
+\begin{thebibliography}{1}
+
+\bibitem[Arnold et al. (1992)] {OrderStat}
+{Arnold}~B. C., {Balakrishnan} N., \& {Nagaraja}~H. N., 1992, John Wiley \& Sons, New York
+
+\bibitem[Kharchenko et al. (2003)] {Kharchenko2003}
+N.~V. {Kharchenko}, L.~K. {Pakulyak}, \& A.~E. {Piskunov}, 2003, VizieR Online Data Catalog, 808:291
+
+\bibitem[Kroupa (2001)] {Kroupa2001}
+P.~{Kroupa}.\mnras, 2001, 322:231--246
+
+\bibitem[Maschberger \& Clarke (2008)] {MassFromN}
+T.~{Maschberger} and C.~J. {Clarke}, 2008, \mnras, 391:711--717
+
+\bibitem[Weidner \& Kroupa (2006)] {Origin}
+C.~{Weidner} and P.~{Kroupa}. 2006, \mnras, 365:1333--1347
+
+\bibitem[Weidner, Kroupa \& Bonnell (2010)]{Kroupa2010}
+C.~{Weidner}, P.~{Kroupa} and I.~A.~D. {Bonnell}, 2010, \mnras, 401:275--293
+
+\bibitem[Elmegreen (2000)]{Elmegreen}
+B.~{Elmegreen}, 2000, ApJ, 539:342--351
+\end{thebibliography}
+
+
+\end{document}

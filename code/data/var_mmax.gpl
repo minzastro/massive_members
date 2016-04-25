@@ -1,0 +1,5 @@
+set term postscript color enhanced 12
+set output "varmaxA1.eps"
+set title "Estimators distributions, B1 massive"
+set xlabel "M_{tot}" 0,0
+plot "distr_1_mA1.dat" u 1:2 w lp title "M_{max} = 50", "distr_2_mA1.dat" u 1:2 w lp title "M_{max} = 150"

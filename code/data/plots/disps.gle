@@ -1,0 +1,7 @@
+size 20 20
+begin graph
+  data arg$(1) d1 d2 d3 d4 d5 d6 d7
+  d5 line marker triangle color red
+  d6 line marker triangle color green
+  d7 line marker triangle color blue  
+end graph
